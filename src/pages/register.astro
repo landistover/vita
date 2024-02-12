@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Sidebar from "../components/Sidebar.astro";
+---
+
+<script>
+  import { savePerson } from "../services/Person.ts";
+
+  const firstname = document.getElementById("firstname")! as HTMLInputElement;
+  const nickname = document.getElementById("nickname")! as HTMLInputElement;
+  const surname = document.getElementById("surname")! as HTMLInputElement;
+  const idnumber = document.getElementById("idnumber")! as HTMLInputElement;
+  const cellphone = document.getElementById("cellphone")! as HTMLInputElement;
+  const username = document.getElementById("username")! as HTMLInputElement;
+  const password = document.getElementById("password")! as HTMLInputElement;
+
+  const register = document.getElementById("register")!;
+
+  register.addEventListener("click", () => {
+    savePerson({
+      FirstName: firstname.value,
+      NickName: nickname.value,
+      Surname: surname.value,
+      IDNumber: idnumber.value,
+      CellphoneNumber: cellphone.value,
+      Username: username.value,
+      Password: password.value,
+    });
+    window.location.href = `/dashboard?username=${username.value}`;
+  });
+</script>
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h4>
+    <label for="firstname">First name</label>
+    <input type="text" id="firstname" placeholder="First name" />
+    <br />
+    <br />
+    <label for="nickname">Nickname</label>
+    <input type="text" id="nickname" placeholder="Nickname" />
+    <br />
+    <br />
+    <label for="surname">Surname</label>
+    <input type="text" id="surname" placeholder="Surname" />
+    <br />
+    <br />
+    <label for="idnumber">ID Number</label>
+    <input type="text" id="idnumber" placeholder="ID Number" />
+    <br />
+    <br />
+    <label for="cellphone">Cellphone Number</label>
+    <input type="text" id="cellphone" placeholder="Cellphone Number" />
+    <br />
+    <br />
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Username" />
+    <br />
+    <br />
+    <label for="password">Password</label>
+    <input type="text" id="password" placeholder="Password" />
+    <br />
+    <br />
+    <button id="register">Register</button></h4>
+  </main>
+
+  <style>
+    main {
+      padding: 0px;
+      width: 800px;
+      max-width: calc(100% - 2rem);
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .astro-a {
+      position: absolute;
+      top: -32px;
+      left: 50%;
+      transform: translatex(-50%);
+      width: 220px;
+      height: auto;
+      z-index: -1;
+    }
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    h4 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #2200b6;
+		line-height: 1;
+		text-align: left;
+		margin-bottom: 1em;
+	}
+    .text-gradient {
+      background-image: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 400%;
+      background-position: 0%;
+    }
+    .instructions {
+      margin-bottom: 2rem;
+      border: 1px solid rgba(var(--accent-light), 25%);
+      background: linear-gradient(
+        rgba(var(--accent-dark), 66%),
+        rgba(var(--accent-dark), 33%)
+      );
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .instructions code {
+      font-size: 0.8em;
+      font-weight: bold;
+      background: rgba(var(--accent-light), 12%);
+      color: rgb(var(--accent-light));
+      border-radius: 4px;
+      padding: 0.3em 0.4em;
+    }
+    .instructions strong {
+      color: rgb(var(--accent-light));
+    }
+    .link-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+      gap: 2rem;
+      padding: 0;
+    }
+  </style>
+</Layout>

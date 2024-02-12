@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Sidebar from "../components/Sidebar.astro";
+import Graph from "../components/Graph.astro";
+---
+
+<script>
+  import { getPerson } from "../services/Person";
+  const username = new URLSearchParams(window.location.search).get("username")!;
+
+
+  const person = getPerson(username);
+
+  document.getElementById("displayname")!.innerHTML += `${person.NickName === "" ? 
+	person.FirstName : 
+	person.NickName} ${person.Surname}`;
+
+	document.getElementById("admissiondate")!.innerHTML += 
+	new Date().toLocaleDateString('en-za', { weekday:"long", year:"numeric", month:"short", day:"numeric"})	;
+
+</script>
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <Sidebar />
+	<div id="displayname"></div>
+	<div id="admissiondate"></div>
+  <div>
+    <br>
+    <br>
+    <h7>Depression</h7>
+    <br>
+    <br>
+    <p>Depression is a mood disorder that causes a persistent feeling of sadness and loss of interest. Also called major depressive disorder or clinical depression, it affects how you feel, think and behave and can lead to a variety of emotional and physical problems. You may have trouble doing normal day-to-day activities, and sometimes you may feel as if life isn't worth living.</p>
+    <br>
+    <p>More than just a bout of the blues, depression isn't a weakness and you can't simply "snap out" of it. Depression may require long-term treatment. But don't get discouraged. Most people with depression feel better with medication, psychotherapy or both.</p>
+    <br>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 0px;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+  h7 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2200b6;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent-light));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+</style>
