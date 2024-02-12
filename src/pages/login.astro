@@ -15,7 +15,7 @@ const password = document.getElementById("password")! as HTMLInputElement;
     const person = getPerson(username.value);
 	person != null && 
 	person.Password === password.value ?
-		window.location.href = `/dashboard?username=${username.value}` :
+		window.location.href = `/vita/dashboard?username=${username.value}` :
 		alert("Incorrect username or password.");	
   });
 </script>
