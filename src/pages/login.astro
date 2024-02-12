@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar.astro';
 ---
 
 <script>
-import { getPerson } from "../services/Person";
+import { getPerson, setCurrentUser } from "../services/Person";
 const username = document.getElementById("username")! as HTMLInputElement;
 const password = document.getElementById("password")! as HTMLInputElement;
 
@@ -15,9 +15,14 @@ const password = document.getElementById("password")! as HTMLInputElement;
     const person = getPerson(username.value);
 	person != null && 
 	person.Password === password.value ?
-		window.location.href = `/vita/dashboard?username=${username.value}` :
+		login() :
 		alert("Incorrect username or password.");	
   });
+
+  const login =() => {
+	setCurrentUser(username.value)
+	window.location.href = `/vita/dashboard`
+  }
 </script>
 
 

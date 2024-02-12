@@ -6,11 +6,11 @@ import Graph from "../components/Graph.astro";
 ---
 
 <script>
-  import { getPerson } from "../services/Person";
-  const username = new URLSearchParams(window.location.search).get("username")!;
+  import { getCurrentUser } from "../services/Person";
+  
 
 
-  const person = getPerson(username);
+  const person = getCurrentUser();
 
   document.getElementById("displayname")!.innerHTML += `${person.NickName === "" ? 
 	person.FirstName : 
@@ -21,7 +21,7 @@ import Graph from "../components/Graph.astro";
 
 </script>
 
-<Layout title="Welcome to Astro.">
+<Layout title="Dashboard">
   <main>
     <Sidebar />
     <br>
