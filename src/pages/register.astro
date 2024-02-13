@@ -1,12 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import Sidebar from "../components/Sidebar.astro";
 ---
 
 <script>
-  import { savePerson } from "../services/Person.ts";
-
+  import { savePerson, setCurrentUser } from "../services/Person.ts";
   const firstname = document.getElementById("firstname")! as HTMLInputElement;
   const nickname = document.getElementById("nickname")! as HTMLInputElement;
   const surname = document.getElementById("surname")! as HTMLInputElement;
@@ -27,7 +24,8 @@ import Sidebar from "../components/Sidebar.astro";
       Username: username.value,
       Password: password.value,
     });
-    window.location.href = `/vita/dashboard?username=${username.value}`;
+    setCurrentUser(username.value);
+    window.location.href = `/vita/dashboard`;
   });
 </script>
 
